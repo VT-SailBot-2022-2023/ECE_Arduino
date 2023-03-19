@@ -78,7 +78,7 @@ void setup()
   // Set the current limit. You should change the number here to an appropriate
   // value for your particular system.
   // mastsd.setCurrentMilliamps36v4(800);
-  ruddersd.setCurrentMilliamps36v4(4000);
+  ruddersd.setCurrentMilliamps36v4(2000);
 
   // Set the number of microsteps that correspond to one full step.
   // mastsd.setStepMode(HPSDStepMode::MicroStep1);
@@ -100,6 +100,19 @@ void loop()
 {
   //int mastAngle = (int) mast.getAngle()-90;
   int rudderAngle = (int) rudder.getAngle() - 90;
+  
+  char r = Serial.read();
+  if (r == 'r') {
+    ruddermove(-30);
+  } 
+  else if (r == 'l') {
+    ruddermove(30);
+  }
+  else if (r == 'c') {
+    ruddermove(0);
+  }
+  
+  delay(100);
   //Serial.print(mastAngle);
   //Serial.println(rudderAngle);
   /*
@@ -123,6 +136,7 @@ void loop()
     }
   }
 */
+/*
   if(rudderAngle >= 72 ) {
     ruddermove(-320/40);
   }
@@ -152,7 +166,7 @@ void loop()
   }
 
   delay(50);
-
+*/
 
 /*
   if(rudderAngle > 60 && currRudder <= 90) {
